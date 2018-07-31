@@ -7,7 +7,7 @@ type OperandStack struct {
 	slots []Slot
 }
 
-func newOperandStack(maxStack uint) *OperandStack {
+func newOperandStack(maxStack uint16) *OperandStack {
 	if maxStack > 0 {
 		return &OperandStack{
 			slots: make([]Slot, maxStack),
@@ -63,4 +63,12 @@ func (self *OperandStack) PopRef() *Object {
 	ref := self.slots[self.size].ref
 	self.slots[self.size].ref = nil
 	return ref
+}
+func (self *OperandStack) PushSlot(slot Slot) {
+	self.slots[self.size] = slot
+	self.size++
+}
+func (self *OperandStack) PopSlot() Slot {
+	self.size--
+	return self.slots[self.size]
 }

@@ -23,3 +23,9 @@ func (self *Thread) PopFrame() *Frame {
 func (self *Thread) CurrentFrame() *Frame {
 	return self.stack.top()
 }
+func (self *Thread) NewFrame(maxLocals, maxStack uint16) *Frame {
+	return newFrame(self, maxLocals, maxStack)
+}
+func (self *Thread) ThrowDivByZero() {
+	// TODO
+}
